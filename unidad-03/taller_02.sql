@@ -1,10 +1,25 @@
 -- taller 02
 
 -- 01. El curso con mayor cantidad de estudiantes por año.
-select distinct year, course_id, course_count_takes_year(course_id, year) as students
-from takes
-order by students desc
-limit 1;
+-- forma 01
+select year, max(students) as max_students, course_id
+from (
+	select distinct year, course_id, course_count_takes_year(course_id, year) as students
+	from takes
+	order by students desc
+) as subquery
+group by year, course_id
+order by year;
+
+-- forma 02
+select year, max(num_students) as max_num_students, course_id
+from (
+	select course_id, year, count(*) as num_students
+	from takes
+	group by course_id, year
+) as subquery
+group by year, course_id
+order by year;
 
 -- 02. El número de estudiantes por departamento.
 -- froma 01

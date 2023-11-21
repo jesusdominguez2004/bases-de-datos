@@ -9,3 +9,7 @@ Unidad 02:
 - Álgebra Relacional
 - Diagramas en draw.io
 
+Unidad 03:
+- Consultas
+- SQL
+- Workbench

@@ -157,3 +157,17 @@ declare c_count int;
 return (c_count);
 end $$
 DELIMITER ;
+
+-- 10. contar albumes, contar canciones del album
+DELIMITER $$
+create function count_songs_track(album_id int)
+returns int
+deterministic
+begin
+declare a_count int;
+	select count(*) into a_count
+    from track
+    where track.AlbumId = album_id;
+return (a_count);
+end $$
+DELIMITER ;
